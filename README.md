@@ -101,8 +101,10 @@ transition : "default"
 # ユーザ ID ($id) をキーとして対象ユーザを取得する構文
 SELECT * FROM users WHERE id = '$id';
 
+
 # ユーザ ID に「10」を指定した場合
 SELECT * FROM users WHERE id = '10';
+
 
 # ユーザ ID に「';DELETE FROM users--」を指定した場合
 SELECT * FROM users WHERE id = '';DELETE FROM users --';
@@ -144,7 +146,7 @@ https://example.com/redirect.cgi?url=｛URL｝
 https://example.com/redirect.cgi?url=http://example.com
 
 # URL に「https://example.com%0D$D0ALocation:+https://trap.example.com」を指定した場合
-https://example.com/redirect.cgi?url=http://example.com
+https://example.com/redirect.cgi?url=https://example.com%0D$D0ALocation:+https://trap.example.com
 
 
 # 上記例では、プログラム中に2行のLocationヘッダが出力される
@@ -176,9 +178,9 @@ SELECT * FROM users WHERE id = 'yamada' and pwd = '' OR 'a' = 'a'
 system("/usr/sbin/sendmail -i < template.txt $mail");
 
 // 「text@example.com」をメールアドレスに指定した場合
-system("/usr/sbin/sendmail -i < template.ext 'test@example.com'");
+system("/usr/sbin/sendmail -i < template.ext test@example.com");
 
 // 「text@example.com;cat /etc/passwd」をメールアドレスに指定した場合
-system("/usr/sbin/sendmail -i < template.ext 'test@example.com'");
+system("/usr/sbin/sendmail -i < template.ext text@example.com;cat /etc/passwd");
 // 上記の場合、/etc/paswd が表示される
 ```
